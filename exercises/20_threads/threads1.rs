@@ -20,10 +20,14 @@ fn main() {
         handles.push(handle);
     }
 
-    let mut results = Vec::new();
+    let mut results: Vec<u128> = Vec::new();
     for handle in handles {
         // TODO: Collect the results of all threads into the `results` vector.
         // Use the `JoinHandle` struct which is returned by `thread::spawn`.
+        // while !handle.is_finished() {
+        //     thread::sleep(Duration::from_millis(100));
+        // }
+        results.push(handle.join().expect("Oh no"));
     }
 
     if results.len() != 10 {
